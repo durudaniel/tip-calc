@@ -19,8 +19,8 @@ function TipCalc() {
   const [percentage1, setPercentage1] = useState("0");
   const [percentage2, setPercentage2] = useState("0");
 
-  const tip = bill * ((+percentage1 + +percentage2) / 2 / 100);
-  const roundTip = Math.round(tip);
+  const calcTip = bill * ((+percentage1 + +percentage2) / 2 / 100);
+  const tip = Math.round(calcTip);
 
   //const percentage = 12;
   function handleReset() {
@@ -67,7 +67,7 @@ function TipCalc() {
         </form>
       </div>
       {+bill === 0 ? null : (
-        <h3>{`You pay $${+bill + roundTip} ($${+bill} + $${roundTip} tip)`}</h3>
+        <h3>{`You pay $${+bill + tip} ($${+bill} + $${tip} tip)`}</h3>
       )}
       {+bill === 0 ? null : <button onClick={handleReset}>Reset</button>}
     </>
