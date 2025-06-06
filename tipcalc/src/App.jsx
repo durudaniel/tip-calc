@@ -19,7 +19,7 @@ function TipCalc() {
   const [percentage1, setPercentage1] = useState("0");
   const [percentage2, setPercentage2] = useState("0");
 
-  const calcTip = bill * ((+percentage1 + +percentage2) / 2 / 100);
+  const calcTip = bill * ((percentage1 + percentage2) / 2 / 100);
   const tip = Math.round(calcTip);
 
   //const percentage = 12;
@@ -43,11 +43,11 @@ function TipCalc() {
           <input
             type="text"
             placeholder="Bill amount"
-            onChange={(e) => setBill(e.target.value)}
+            onChange={(e) => setBill(+e.target.value)}
           />
           <select
             value={percentage1}
-            onChange={(e) => setPercentage1(e.target.value)}
+            onChange={(e) => setPercentage1(+e.target.value)}
           >
             <option value="0">Dissatisfied (0)%</option>
             <option value="5">it was okay (5)%</option>
@@ -57,7 +57,7 @@ function TipCalc() {
 
           <select
             value={percentage2}
-            onChange={(e) => setPercentage2(e.target.value)}
+            onChange={(e) => setPercentage2(+e.target.value)}
           >
             <option value="0">Dissatisfied (0)%</option>
             <option value="5">it was okay (5)%</option>
@@ -67,9 +67,9 @@ function TipCalc() {
         </form>
       </div>
       {+bill === 0 ? null : (
-        <h3>{`You pay $${+bill + tip} ($${+bill} + $${tip} tip)`}</h3>
+        <h3>{`You pay $${bill + tip} ($${bill} + $${tip} tip)`}</h3>
       )}
-      {+bill === 0 ? null : <button onClick={handleReset}>Reset</button>}
+      {bill === 0 ? null : <button onClick={handleReset}>Reset</button>}
     </>
   );
 }
